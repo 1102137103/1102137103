@@ -1,0 +1,133 @@
+﻿@model _0329.Models.OrderSearchArg
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>訂單查詢</h2>
+    @using (Html.BeginForm("Index", "Order", FormMethod.Post, new { id = "Form1" }))
+    {
+        <div id="SearchConditionSection">
+            <table class="table table-bordered">
+                <tr>
+                    <td>訂單編號</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.OrderId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>客戶名稱</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.CustName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>負責員工</td>
+                    <td>
+                        @Html.DropDownListFor(model => model.EmployeeID, (List<SelectListItem>)ViewBag.EmpCodeData, "請選擇")
+                    </td>
+                </tr>
+                <tr>
+                    <td>出貨公司</td>
+                    <td>
+                        @Html.DropDownListFor(model => model.ShipperID, (List<SelectListItem>)ViewBag.ShipCodeData, "請選擇")
+                    </td>
+                </tr>
+                <tr>
+                    <td>訂購日期</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.OrderDate, new { @type = "date" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>出貨日期</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ShippedDate, new { @type = "date" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>需要日期</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.RequiredDate, new { @type = "date" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="查詢" />
+                        <input type="button" value="清除" />
+                        @Html.ActionLink("新增訂單", "InsertOrder")
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
+        <div id="SearchResultSection">
+
+
+            @if (ViewBag.SearchResult != null)
+            {
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>訂單編號</td>
+                        <td>客戶名稱</td>
+                        <td>負責員工</td>
+                        <td>訂購日期</td>
+                        <td>出貨日期</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @foreach (var item in (List<_0329.Models.Order>)ViewBag.SearchResult)
+                    {
+                        <tr id='@item.OrderId'>
+                            <td>@item.OrderId</td>
+                            <td>@item.CustName</td>
+                            <td>@item.EmpName</td>
+                            <td>@item.Orderdate</td>
+                            <td>@item.ShippedDate</td>
+                            <td></td>
+                            <td>@Html.ActionLink("修改", "UpdateOrder", new { id = item.OrderId })</td>
+                            <td>
+                                <a class="btnDelete" href="#">刪除</a>
+                                <input class="hidOrderId" type="hidden" value='@item.OrderId' />
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+
+
+        </div>
+    }
+    <script type="text/javascript">
+
+        $(".btnDelete").click(function (e) {
+            console.log("delete");
+            var tr = $(this).closest('tr')
+            $.ajax({
+                type: "POST",
+                url: "/Order/DeleteOrder",
+                data: "orderId=" + $(this).next().val(),
+                dataType: "json",
+                success: function (response) {
+                    $(tr).remove();
+                }
+            });
+            return false;
+        });
+
+    </script>
+</body>
+</html>
