@@ -179,14 +179,14 @@ namespace _0329.Models
         /// <param name="order"></param>
         public void UpdateOrder(Models.Order order)
         {
-            try
+        try
             {
                 string sql = @"UPDATE Sales.Orders SET 
 	                        CustomerID=@custid,EmployeeID=@empid,orderdate=@orderdate,requireddate=@requireddate,
                             shippeddate=@shippeddate,shipperid=@shipperid,freight=@freight,shipname=@shipname,
                             shipaddress=@shipaddress,shipcity=@shipcity,shipregion=@shipregion,
                             shippostalcode=@shippostalcode,shipcountry=@shipcountry                          
-                            WHERE orderid=@orderid";
+                            WHERE OrderId=@orderid";
                 using (SqlConnection conn = new SqlConnection(this.GetDBConnectionString()))
                 {
                     conn.Open();

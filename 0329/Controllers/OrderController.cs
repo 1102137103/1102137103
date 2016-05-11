@@ -95,6 +95,10 @@ namespace _0329.Controllers
         [HttpPost]
         public ActionResult UpdateOrder(Models.Order order)
         {
+            Models.OrderService orderService = new Models.OrderService();
+            ViewBag.EmpCodeData = this.codeService.GetEmp(-1);
+            ViewBag.ShipCodeData = this.codeService.GetShip(-1);
+            orderService.UpdateOrder(order);
             return View();
         }
 
