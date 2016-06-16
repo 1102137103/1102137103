@@ -85,7 +85,7 @@ namespace _0329.Controllers
             ViewBag.RequireDdate = string.Format("{0:yyyy-MM-dd}", order.RequireDdate);
             ViewBag.ShippedDate = string.Format("{0:yyyy-MM-dd}", order.ShippedDate);
             ViewBag.SearchResult = order;
-            return View(new Models.Order());
+            return View(order);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace _0329.Controllers
             ViewBag.EmpCodeData = this.codeService.GetEmp(-1);
             ViewBag.ShipCodeData = this.codeService.GetShip(-1);
             orderService.UpdateOrder(order);
-            return View();
+            return View("Index");
         }
 
         /// <summary>

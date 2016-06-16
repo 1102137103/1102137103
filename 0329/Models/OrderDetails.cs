@@ -18,18 +18,23 @@ namespace _0329.Models
         public int ProductId { get; set; }
 
         /// <summary>
+        /// 產品名稱
+        /// </summary>
+        public string ProductName { get; set; }
+
+        /// <summary>
         /// 單價
         /// </summary>
-        public int UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         /// <summary>
         /// 數量
         /// </summary>
-        public decimal Qty { get; set; }
+        public short Qty { get; set; }
 
         /// <summary>
         /// 折扣
         /// </summary>
-        public int Discount { get; set; }
+        public decimal Discount { get; set; }
     }
 }

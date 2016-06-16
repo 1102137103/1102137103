@@ -1,7 +1,8 @@
 ﻿@model _0329.Models.Order
 
 @{
-    Layout = null;
+    ViewBag.Title = "UpdateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -134,14 +135,13 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="修改" class="btn btn-default" />
+                    <input type="submit" value="修改"/>
+                    @Html.ActionLink("回上一頁", "Index")
                 </div>
             </div>
         </div>
     }
 
-    <div>
-       @Html.ActionLink("回上一頁", "Index")
-    </div>
+    
 </body>
 </html>
