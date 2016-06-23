@@ -172,6 +172,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\OrderDetailService.cs" />
     <Compile Include="Models\OrderSearchArg.cs" />
     <Compile Include="Models\OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

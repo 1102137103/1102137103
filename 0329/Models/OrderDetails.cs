@@ -30,7 +30,7 @@ namespace _0329.Models
         /// <summary>
         /// 數量
         /// </summary>
-        public short Qty { get; set; }
+        public decimal Qty { get; set; }
 
         /// <summary>
         /// 折扣
